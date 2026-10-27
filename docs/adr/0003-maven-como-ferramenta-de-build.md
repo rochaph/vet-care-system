@@ -8,7 +8,7 @@
 Antes de inicializar os serviços Java é preciso escolher a ferramenta de build. As opções maduras no ecossistema
 são Maven e Gradle, e as duas são suportadas pelo Spring Boot.
 
-O projeto tem 5 serviços Java (`bff`, `users`, `orders`, `payments`, `inventory`) com builds independentes e sem
+O projeto tem 5 serviços Java (`bff`, `pets`, `appointments`, `inventory`, `payments`) com builds independentes e sem
 código compartilhado. Cada build é pequeno e isolado, o que reduz as vantagens técnicas que o Gradle tem em monorepos
 grandes com muitos módulos interdependentes.
 

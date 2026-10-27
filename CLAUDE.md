@@ -1,11 +1,11 @@
 # CLAUDE.md
 
-E-commerce simplificado para praticar arquitetura distribuída. Arquitetura, stack e roteiro estão no [README](README.md);
+Plataforma veterinária simplificada (agendamento de atendimentos e carteira de saúde do pet) para praticar arquitetura distribuída. Arquitetura, stack e roteiro estão no [README](README.md);
 decisões de arquitetura em [docs/adr](docs/adr).
 
 ## Estrutura
 
-- `services/<nome>/`: um diretório por microsserviço (`bff`, `users`, `orders`, `payments`, `inventory` em Java; `notifications` em Go)
+- `services/<nome>/`: um diretório por microsserviço (`bff`, `pets`, `appointments`, `inventory`, `payments` em Java; `notifications` em Go)
 - `infra/`: docker-compose, Kubernetes (Helm/Argo CD) e Terraform
 - `docs/adr/`: Architecture Decision Records, numerados em sequência a partir de `template.md`
 - `docs/learning/`: anotações de estudo por conceito
