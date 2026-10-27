@@ -92,7 +92,7 @@ docs/learning/   anotações de estudo de cada conceito
 
 ## Roteiro
 
-- [ ] **1. Base**: serviços em Arquitetura Hexagonal, Testcontainers, docker-compose
+- [ ] **1. Base**: Spring Boot em camadas, refatorado para Arquitetura Hexagonal e multi-módulo; Testcontainers, docker-compose
 - [ ] **2. Mensageria e consistência**: Kafka, Outbox, idempotência, retry/DLQ, Saga
 - [ ] **3. Session e OAuth 2.0/OIDC**: Keycloak, BFF, Redis, resource servers, Client Credentials, Token Exchange, logout
 - [ ] **4. Kubernetes**: kind, Helm, Argo CD, OpenTelemetry, HPA

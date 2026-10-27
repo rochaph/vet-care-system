@@ -1,21 +1,12 @@
 # N. Título da decisão
 
-- **Status:** proposta | aceita | substituída por N
+- **Status:** aceita | substituída por N
 - **Data:** AAAA-MM-DD
 
-## Contexto
+**Decisão:** o que foi escolhido, em uma frase.
 
-Qual problema ou força motivou a decisão?
+**Por quê:** 1 a 3 tópicos.
 
-## Alternativas consideradas
+**Alternativa descartada:** a opção que perdeu e por quê, em uma linha.
 
-- **Opção A**: prós / contras
-- **Opção B**: prós / contras
-
-## Decisão
-
-O que foi decidido.
-
-## Consequências
-
-O que fica mais fácil, o que fica mais difícil e quais riscos foram aceitos.
+**Custo aceito:** o que fica pior com essa escolha.

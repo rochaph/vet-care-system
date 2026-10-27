@@ -12,18 +12,21 @@ Resultado: ✅ acertou · ⚠️ parcial · ❌ errou · — ainda não pergunta
 
 | # | Pergunta | Origem | Última revisão | Resultado |
 |---|---|---|---|---|
-| 1 | Por que Maven e não Gradle neste projeto? | 2026-10-14 | 2026-10-25 | ⚠️ |
-| 2 | Para que serve o Maven Wrapper? | 2026-10-14 | 2026-10-25 | ⚠️ |
+| 1 | Por que Maven e não Gradle neste projeto? | 2026-10-14 | 2026-10-27 | ✅ |
+| 2 | Para que serve o Maven Wrapper? | 2026-10-14 | 2026-10-27 | ✅ |
 | 3 | Que problema a arquitetura em camadas tradicional causa no domínio? | 2026-10-15 | — | — |
-| 4 | O que é um port de entrada? E um de saída? | 2026-10-15 | 2026-10-25 | ❌ |
+| 4 | O que é um port de entrada? E um de saída? | 2026-10-15 | 2026-10-27 | ✅ |
 | 5 | Por que o port de saída é declarado no centro, e não no adapter? | 2026-10-15 | — | — |
 | 6 | Qual princípio do SOLID sustenta a Arquitetura Hexagonal? | 2026-10-15 | — | — |
 | 7 | Quando a Arquitetura Hexagonal *não* vale a pena? | 2026-10-15 | — | — |
 | 8 | Módulo único + ArchUnit vs. multi-módulo: quando cada um detecta a violação? | 2026-10-15 | — | — |
 | 9 | Por que o multi-módulo não elimina o ArchUnit? | 2026-10-15 | — | — |
-| 10 | Por que os casos de uso não levam `@Service` nem `@Transactional` aqui? | 2026-10-15 | — | — |
-| 11 | Chamar o `payments` via HTTP gera que tipo de port, e onde ficam interface e implementação? | 2026-10-25 | 2026-10-25 | ⚠️ |
+| 10 | Por que os casos de uso não levam `@Service` nem `@Transactional` aqui? | 2026-10-15 | 2026-10-27 | ✅ |
+| 11 | Chamar o `payments` via HTTP gera que tipo de port, e onde ficam interface e implementação? | 2026-10-25 | 2026-10-27 | ✅ |
 | 12 | No multi-módulo, em que módulo fica a `@SpringBootApplication` e quais módulos têm Spring no classpath? | 2026-10-25 | — | — |
+| 13 | O que é o composition root e qual módulo cumpre esse papel? | 2026-10-27 | 2026-10-27 | ✅ |
+| 14 | Como evitar um `@Bean` por caso de uso sem pôr Spring no `application`? | 2026-10-27 | — | — |
+| 15 | Herdar `spring-boot-starter-parent` coloca o Spring no classpath do `domain`? | 2026-10-27 | — | — |
 
 ## Registro
 
@@ -37,6 +40,18 @@ Uma entrada por sessão, da mais recente para a mais antiga.
 - **Quiz do dia:** acertos / total; perguntas novas entram no banco de revisão
 - **Ponto fraco:** o que precisa voltar na revisão
 -->
+
+### 2026-10-27 · M01 · ADR do multi-módulo (fechamento) e novo Bloco 1
+
+- **Status:** concluída
+- **Aprendi:** o `bootstrap` é o composition root: o único lugar que conhece as classes concretas e liga as peças.
+  Casos de uso entram via `@Bean` porque `@Service` prenderia o `application` ao Spring; uma anotação `@UseCase`
+  própria com `includeFilters` evita um `@Bean` por caso de uso.
+- **Decisão:** o Bloco 1 foi reordenado. Spring Boot em camadas primeiro (M02–M06), refatoração para hexagonal e
+  multi-módulo depois (M07–M11): uma novidade por vez, e sentir a dor antes do remédio. ADRs passam a ser escritos
+  pelo Claude, em formato curto, e nunca são missão.
+- **Quiz do dia:** não aplicado. Revisão: 4/4 (#1, #2, #4, #11) e checagem 2/2 (#10, #13).
+- **Ponto fraco:** nenhum novo; Spring Boot em si ainda não foi praticado.
 
 ### 2026-10-25 · M01 · ADR do multi-módulo
 

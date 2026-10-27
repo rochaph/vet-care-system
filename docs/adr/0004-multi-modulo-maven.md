@@ -1,6 +1,6 @@
 # 4. Multi-módulo Maven em todos os serviços Java
 
-- **Status:** proposta
+- **Status:** aceita
 - **Data:** 2026-10-25
 
 ## Contexto

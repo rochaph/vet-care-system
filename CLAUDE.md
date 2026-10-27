@@ -16,6 +16,8 @@ decisões de arquitetura em [docs/adr](docs/adr).
   - As dependências apontam para dentro. `domain` não depende de framework (sem anotações Spring, JPA ou Jackson) nem de infraestrutura.
   - Frameworks e tecnologias aparecem apenas em `adapters` e na configuração.
   - As fronteiras são verificadas por testes de arquitetura (ArchUnit), que devem quebrar o build quando violadas.
+  - Exceção didática: no Bloco 1 o `appointments` começa em camadas, de propósito (missões M02–M06 do
+    [plano diário](docs/learning/plano-diario.md)), e é refatorado para hexagonal e multi-módulo nas missões seguintes.
 - **Cada serviço é dono dos seus dados**: banco próprio; nenhum serviço acessa o banco de outro.
 - **Nada de código de domínio compartilhado entre serviços.** A integração acontece por contratos explícitos: APIs REST e eventos versionados.
 - **Serviços stateless**: estado de sessão fica no Redis (via BFF), nunca na memória de uma instância.
@@ -25,7 +27,7 @@ decisões de arquitetura em [docs/adr](docs/adr).
 
 - Java 21 + Spring Boot 4 nos serviços Java; Go no `notifications`.
 - Commits no padrão Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`, `test:`, `refactor:`).
-- Decisão com trade-off relevante vira ADR antes ou junto com a implementação.
+- Decisão com trade-off relevante vira ADR curto (formato de `docs/adr/template.md`) junto com a implementação.
 - Documentação em português do Brasil.
 
 ## Testes
