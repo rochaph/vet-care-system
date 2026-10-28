@@ -27,7 +27,8 @@ decisões de arquitetura em [docs/adr](docs/adr).
 
 - Java 21 + Spring Boot 4 nos serviços Java; Go no `notifications`.
 - Commits no padrão Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`, `test:`, `refactor:`).
-- Decisão com trade-off relevante vira ADR curto (formato de `docs/adr/template.md`) junto com a implementação.
+- Decisão com trade-off relevante vira ADR curto (formato de `docs/adr/template.md`) junto com a implementação,
+  e ganha uma linha no índice [docs/adr/README.md](docs/adr/README.md).
 - Documentação em português do Brasil.
 
 ## Testes

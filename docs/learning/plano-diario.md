@@ -9,8 +9,9 @@ Uma missão por dia, de ~60 minutos, com começo, meio e fim. A rotina das 15h l
 - **Pulou um dia? Sem acúmulo.** No dia seguinte a missão é a mesma, nunca duas.
 - **Dia difícil? Faça a versão mínima.** Ela mantém o hábito vivo, e isso vale mais que a missão inteira.
 - **Toda sessão segue o ciclo:** revisão (perguntas curtas de dias anteriores) → missão → quiz do dia → registro no diário → commit e push.
-- **ADRs são com o Claude.** Quando surge uma decisão com trade-off, o Claude escreve um ADR curto (formato do
-  `template.md`, ~6 linhas) junto com a implementação. ADR nunca é missão nem critério de pronto.
+- **ADR: o Claude escreve, você estuda.** Quando surge uma decisão com trade-off, o Claude escreve o ADR curto
+  na hora, mostra na sessão e você concorda ou discorda com um clique. O trade-off vira pergunta no banco de revisão
+  e a linha entra no [índice](../adr/README.md). Escrever ADR nunca é missão nem critério de pronto.
 - O plano é vivo: missões podem ser quebradas, juntadas ou reordenadas na revisão de cada bloco.
 
 ## Progresso
@@ -184,7 +185,7 @@ O `appointments` é o serviço de referência. Os demais nascem nos blocos em qu
 - **Pronto quando:**
   - [ ] `appointments` no docker-compose e seção "Como rodar" do README preenchida
   - [ ] `docs/learning/arquitetura-hexagonal.md` no formato do README da pasta
-  - [ ] Simulado de entrevista do bloco (10 perguntas)
+  - [ ] Simulado de entrevista do bloco (10 perguntas), incluindo explicar cada ADR do bloco em 1 minuto
   - [ ] Item 1 do roteiro marcado no README
   - [ ] Missões do Bloco 2 detalhadas neste arquivo
 - **Versão mínima:** anotação de estudo escrita.
