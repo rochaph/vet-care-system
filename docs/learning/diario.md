@@ -28,6 +28,7 @@ Resultado: ✅ acertou · ⚠️ parcial · ❌ errou · — ainda não pergunta
 | 14 | Como evitar um `@Bean` por caso de uso sem pôr Spring no `application`? | 2026-10-27 | — | — |
 | 15 | Herdar `spring-boot-starter-parent` coloca o Spring no classpath do `domain`? | 2026-10-27 | — | — |
 | 16 | ADR 0002: por que Go só no `notifications`, e não em todos os serviços? | 2026-10-27 | — | — |
+| 17 | ADR 0002: por que Java 25 e não Java 21? | 2026-11-01 | — | — |
 
 ## Registro
 

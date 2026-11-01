@@ -58,7 +58,7 @@ Fora do escopo: internação, prontuário clínico completo, exames, telemedicin
 
 | Camada | Tecnologia |
 |---|---|
-| Serviços principais | Java 21, Spring Boot 4 |
+| Serviços principais | Java 25 (LTS), Spring Boot 4 |
 | Serviço serverless | Go (AWS Lambda) |
 | Identidade | Keycloak (local), Amazon Cognito (AWS) |
 | Sessão | Spring Session + Redis |

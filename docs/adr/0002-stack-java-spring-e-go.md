@@ -17,10 +17,12 @@ e consumo de memória pesam.
 
 ## Decisão
 
-Java 21 + Spring Boot 4 em `bff`, `pets`, `appointments`, `inventory` e `payments`. Go em `notifications`.
+Java 25 (LTS mais recente) + Spring Boot 4 em `bff`, `pets`, `appointments`, `inventory` e `payments`. Go em `notifications`.
 
 ## Consequências
 
 - Spring Security, Spring Session, Spring Kafka e Testcontainers cobrem os temas centrais com ferramentas de referência.
+- Java 25 em vez de 21: suporte LTS mais longo, virtual threads sem *pinning* em `synchronized` (JEP 491) e cache AOT
+  que reduz o tempo de subida. Custo: algumas bibliotecas ainda emitem avisos no JDK 25 (ex.: Mockito com agente dinâmico).
 - Go entrega Lambdas com cold start baixo e binário pequeno.
 - Duas toolchains no CI. Os contratos entre serviços (eventos e APIs) precisam ser explícitos, já que não há código compartilhado.

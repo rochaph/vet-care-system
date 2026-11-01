@@ -56,7 +56,7 @@ O `appointments` é o serviço de referência. Os demais nascem nos blocos em qu
 ### M02 · Spring Boot do zero
 
 - **Por quê:** aprender o framework sozinho, antes de misturar arquitetura.
-- **Primeiro passo (5 min):** gerar o projeto no start.spring.io (Maven, Java 21, Spring Boot 4, Spring Web) em
+- **Primeiro passo (5 min):** gerar o projeto no start.spring.io (Maven, Java 25, Spring Boot 4, Spring Web) em
   `services/appointments` e rodar `./mvnw spring-boot:run`.
 - **Pronto quando:**
   - [ ] Projeto em módulo único com Maven Wrapper versionado
