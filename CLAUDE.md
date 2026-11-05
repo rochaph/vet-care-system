@@ -26,7 +26,8 @@ decisões de arquitetura em [docs/adr](docs/adr).
 ## Convenções
 
 - Java 25 (LTS) + Spring Boot 4 nos serviços Java; Go no `notifications`.
-- Commits no padrão Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`, `test:`, `refactor:`).
+- Commits no padrão de commit semântico (`feat:`, `fix:`, `chore:`, `docs:`, `test:`, `refactor:`), sem coautoria do Claude;
+  detalhes na skill [commit](.claude/skills/commit/SKILL.md).
 - Decisão com trade-off relevante vira ADR curto (formato de `docs/adr/template.md`) junto com a implementação,
   e ganha uma linha no índice [docs/adr/README.md](docs/adr/README.md).
 - Documentação em português do Brasil.
