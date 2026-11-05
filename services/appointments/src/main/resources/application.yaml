@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: appointments
+
+vetcare:
+  clinic:
+    name: Clínica Vet Care
+    opening-hours: "08:00-18:00"
