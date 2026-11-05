@@ -23,17 +23,21 @@ Resultado: ✅ acertou · ⚠️ parcial · ❌ errou · — ainda não pergunta
 | 9 | Por que o multi-módulo não elimina o ArchUnit? | 2026-10-15 | 2026-11-05 | ✅ |
 | 10 | Por que os casos de uso não levam `@Service` nem `@Transactional` aqui? | 2026-10-15 | 2026-10-27 | ✅ |
 | 11 | Chamar o `payments` via HTTP gera que tipo de port, e onde ficam interface e implementação? | 2026-10-25 | 2026-10-27 | ✅ |
-| 12 | No multi-módulo, em que módulo fica a `@SpringBootApplication` e quais módulos têm Spring no classpath? | 2026-10-25 | 2026-11-05 | ❌ |
+| 12 | No multi-módulo, em que módulo fica a `@SpringBootApplication` e quais módulos têm Spring no classpath? | 2026-10-25 | 2026-11-05 | ✅ |
 | 13 | O que é o composition root e qual módulo cumpre esse papel? | 2026-10-27 | 2026-10-27 | ✅ |
-| 14 | Como evitar um `@Bean` por caso de uso sem pôr Spring no `application`? | 2026-10-27 | — | — |
+| 14 | Como evitar um `@Bean` por caso de uso sem pôr Spring no `application`? | 2026-10-27 | 2026-11-05 | ❌ |
 | 15 | Herdar `spring-boot-starter-parent` coloca o Spring no classpath do `domain`? | 2026-10-27 | 2026-11-05 | ✅ |
-| 16 | ADR 0002: por que Go só no `notifications`, e não em todos os serviços? | 2026-10-27 | — | — |
-| 17 | ADR 0002: por que Java 25 e não Java 21? | 2026-11-01 | — | — |
+| 16 | ADR 0002: por que Go só no `notifications`, e não em todos os serviços? | 2026-10-27 | 2026-11-05 | ✅ |
+| 17 | ADR 0002: por que Java 25 e não Java 21? | 2026-11-01 | 2026-11-05 | ✅ |
 | 18 | Como o Spring Boot decide o que autoconfigurar? | 2026-11-05 | 2026-11-05 | ✅ |
 | 19 | Por que injeção pelo construtor, e não `@Autowired` no campo? | 2026-11-05 | 2026-11-05 | ✅ |
 | 20 | O que faz um método de `@RestController` devolver JSON? | 2026-11-05 | 2026-11-05 | ✅ |
 | 21 | Por que um arquivo apagado de `src` ainda pode valer depois de `mvnw verify`? | 2026-11-05 | 2026-11-05 | ✅ |
 | 22 | Em que charset o Spring Boot lê `application.properties` e `application.yml`? | 2026-11-05 | — | — |
+| 23 | ADR 0005: por que o API Gateway fica no `bff`, e não em um serviço separado? | 2026-11-05 | 2026-11-05 | ✅ |
+| 24 | Qual a diferença entre Ingress, API Gateway e BFF? | 2026-11-05 | 2026-11-05 | ❌ |
+| 25 | Por que `pet_id` na tabela de atendimentos não tem foreign key? | 2026-11-05 | 2026-11-05 | ✅ |
+| 26 | O que acontece ao editar uma migration Flyway que já foi aplicada? | 2026-11-05 | 2026-11-05 | ✅ |
 
 ## Registro
 
@@ -47,6 +51,17 @@ Uma entrada por sessão, da mais recente para a mais antiga.
 - **Quiz do dia:** acertos / total; perguntas novas entram no banco de revisão
 - **Ponto fraco:** o que precisa voltar na revisão
 -->
+
+### 2026-11-05 · M03 · Postgres, JPA e Flyway
+
+- **Status:** parcial (Postgres no compose com `.env`; a aplicação ainda não conecta ao banco)
+- **Aprendi:** cada serviço tem o próprio container de banco, e por isso `pet_id` não tem foreign key. Nas portas do
+  compose, o IP define de onde o banco aceita conexões: sem IP, o Docker usa `0.0.0.0`; com `127.0.0.1`, só a própria
+  máquina. O Flyway foi só apresentado: versiona o schema em SQL e usa checksum para detectar migration editada.
+  Decisão: o `bff` será também o API Gateway, com Spring Cloud Gateway, no Bloco 3 (ADR 0005).
+- **Quiz do dia:** 3/4 (#24 ❌). Revisão: 3/4 (#14 ❌).
+- **Ponto fraco:** diferença entre Ingress, API Gateway e BFF (#24); `@UseCase` própria com `includeFilters` (#14).
+- **Próximo passo:** dependências do Flyway e `datasource` no `application.yaml`, depois `V1__create_appointments.sql`.
 
 ### 2026-11-05 · M02 · Spring Boot do zero
 

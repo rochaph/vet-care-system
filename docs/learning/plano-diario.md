@@ -20,7 +20,7 @@ Uma missão por dia, de ~60 minutos, com começo, meio e fim. A rotina das 15h l
 |---|---|---|
 | M01 · ADR do multi-módulo | 1 | concluída |
 | M02 · Spring Boot do zero | 1 | concluída |
-| M03 · Postgres, JPA e Flyway | 1 | pendente |
+| M03 · Postgres, JPA e Flyway | 1 | em andamento |
 | M04 · CRUD de agendamento em camadas | 1 | pendente |
 | M05 · Testes no Spring | 1 | pendente |
 | M06 · Regras de negócio e a dor | 1 | pendente |
@@ -71,7 +71,7 @@ O `appointments` é o serviço de referência. Os demais nascem nos blocos em qu
 - **Por quê:** persistir de verdade; é o equivalente ao Eloquent com migrations.
 - **Primeiro passo (5 min):** subir só um Postgres com `infra/docker-compose`.
 - **Pronto quando:**
-  - [ ] Postgres no compose, configuração via `.env` (só `.env.example` versionado)
+  - [x] Postgres no compose, configuração via `.env` (só `.env.example` versionado)
   - [ ] Migration Flyway da tabela de atendimentos, aplicada quando a aplicação sobe
   - [ ] Entidade `@Entity Appointment` e uma interface `JpaRepository`
 - **Conceito de entrevista:** ORM, Data Mapper (JPA) vs. Active Record (Eloquent), Spring Data, versionamento de schema.
@@ -196,7 +196,8 @@ Detalhados em missões ao fim do bloco anterior.
 
 - **Bloco 2, Mensageria e consistência:** Kafka, Transactional Outbox, consumidor idempotente, retry/DLQ, Saga do
   agendamento com compensação (`inventory` e `payments`)
-- **Bloco 3, Session e OAuth 2.0/OIDC:** Keycloak, BFF com sessão no Redis, Authorization Code + PKCE, resource
-  servers, consentimento do tutor por escopo, Client Credentials, Token Exchange, logout (`pets` e `bff`)
+- **Bloco 3, Session, OAuth 2.0/OIDC e API Gateway:** Keycloak, BFF com sessão no Redis, Authorization Code + PKCE,
+  resource servers, consentimento do tutor por escopo, Client Credentials, Token Exchange, logout; `bff` como API Gateway
+  com Spring Cloud Gateway: roteamento, rate limit, circuit breaker, token relay (`pets` e `bff`)
 - **Bloco 4, Kubernetes:** kind, Helm, Argo CD, OpenTelemetry, HPA
 - **Bloco 5, Serverless e AWS:** lembretes de vacina com `notifications` em Go na Lambda, SQS, Terraform (LocalStack → AWS)
