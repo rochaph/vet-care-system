@@ -19,7 +19,7 @@ Uma missão por dia, de ~60 minutos, com começo, meio e fim. A rotina das 15h l
 | Missão | Bloco | Status |
 |---|---|---|
 | M01 · ADR do multi-módulo | 1 | concluída |
-| M02 · Spring Boot do zero | 1 | pendente |
+| M02 · Spring Boot do zero | 1 | concluída |
 | M03 · Postgres, JPA e Flyway | 1 | pendente |
 | M04 · CRUD de agendamento em camadas | 1 | pendente |
 | M05 · Testes no Spring | 1 | pendente |
@@ -60,8 +60,8 @@ O `appointments` é o serviço de referência. Os demais nascem nos blocos em qu
   `services/appointments` e rodar `./mvnw spring-boot:run`.
 - **Pronto quando:**
   - [ ] Projeto em módulo único com Maven Wrapper versionado
-  - [ ] Um endpoint `GET` respondendo, com controller que recebe um `@Service` por injeção via construtor
-  - [ ] Um valor lido do `application.yml` com `@ConfigurationProperties`
+  - [x] Um endpoint `GET` respondendo, com controller que recebe um `@Service` por injeção via construtor
+  - [x] Um valor lido do `application.yml` com `@ConfigurationProperties`
 - **Conceito de entrevista:** IoC e injeção de dependência, bean, starter, autoconfiguração
   (paralelo com o Laravel: service container ≈ `ApplicationContext`, service provider ≈ `@Configuration`).
 - **Versão mínima:** projeto gerado e subindo.

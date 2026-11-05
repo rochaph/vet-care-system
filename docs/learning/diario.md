@@ -14,21 +14,26 @@ Resultado: ✅ acertou · ⚠️ parcial · ❌ errou · — ainda não pergunta
 |---|---|---|---|---|
 | 1 | Por que Maven e não Gradle neste projeto? | 2026-10-14 | 2026-10-27 | ✅ |
 | 2 | Para que serve o Maven Wrapper? | 2026-10-14 | 2026-10-27 | ✅ |
-| 3 | Que problema a arquitetura em camadas tradicional causa no domínio? | 2026-10-15 | — | — |
+| 3 | Que problema a arquitetura em camadas tradicional causa no domínio? | 2026-10-15 | 2026-10-28 | ✅ |
 | 4 | O que é um port de entrada? E um de saída? | 2026-10-15 | 2026-10-27 | ✅ |
-| 5 | Por que o port de saída é declarado no centro, e não no adapter? | 2026-10-15 | — | — |
-| 6 | Qual princípio do SOLID sustenta a Arquitetura Hexagonal? | 2026-10-15 | — | — |
-| 7 | Quando a Arquitetura Hexagonal *não* vale a pena? | 2026-10-15 | — | — |
-| 8 | Módulo único + ArchUnit vs. multi-módulo: quando cada um detecta a violação? | 2026-10-15 | — | — |
-| 9 | Por que o multi-módulo não elimina o ArchUnit? | 2026-10-15 | — | — |
+| 5 | Por que o port de saída é declarado no centro, e não no adapter? | 2026-10-15 | 2026-10-28 | ✅ |
+| 6 | Qual princípio do SOLID sustenta a Arquitetura Hexagonal? | 2026-10-15 | 2026-10-28 | ✅ |
+| 7 | Quando a Arquitetura Hexagonal *não* vale a pena? | 2026-10-15 | 2026-10-28 | ✅ |
+| 8 | Módulo único + ArchUnit vs. multi-módulo: quando cada um detecta a violação? | 2026-10-15 | 2026-11-05 | ✅ |
+| 9 | Por que o multi-módulo não elimina o ArchUnit? | 2026-10-15 | 2026-11-05 | ✅ |
 | 10 | Por que os casos de uso não levam `@Service` nem `@Transactional` aqui? | 2026-10-15 | 2026-10-27 | ✅ |
 | 11 | Chamar o `payments` via HTTP gera que tipo de port, e onde ficam interface e implementação? | 2026-10-25 | 2026-10-27 | ✅ |
-| 12 | No multi-módulo, em que módulo fica a `@SpringBootApplication` e quais módulos têm Spring no classpath? | 2026-10-25 | — | — |
+| 12 | No multi-módulo, em que módulo fica a `@SpringBootApplication` e quais módulos têm Spring no classpath? | 2026-10-25 | 2026-11-05 | ❌ |
 | 13 | O que é o composition root e qual módulo cumpre esse papel? | 2026-10-27 | 2026-10-27 | ✅ |
 | 14 | Como evitar um `@Bean` por caso de uso sem pôr Spring no `application`? | 2026-10-27 | — | — |
-| 15 | Herdar `spring-boot-starter-parent` coloca o Spring no classpath do `domain`? | 2026-10-27 | — | — |
+| 15 | Herdar `spring-boot-starter-parent` coloca o Spring no classpath do `domain`? | 2026-10-27 | 2026-11-05 | ✅ |
 | 16 | ADR 0002: por que Go só no `notifications`, e não em todos os serviços? | 2026-10-27 | — | — |
 | 17 | ADR 0002: por que Java 25 e não Java 21? | 2026-11-01 | — | — |
+| 18 | Como o Spring Boot decide o que autoconfigurar? | 2026-11-05 | 2026-11-05 | ✅ |
+| 19 | Por que injeção pelo construtor, e não `@Autowired` no campo? | 2026-11-05 | 2026-11-05 | ✅ |
+| 20 | O que faz um método de `@RestController` devolver JSON? | 2026-11-05 | 2026-11-05 | ✅ |
+| 21 | Por que um arquivo apagado de `src` ainda pode valer depois de `mvnw verify`? | 2026-11-05 | 2026-11-05 | ✅ |
+| 22 | Em que charset o Spring Boot lê `application.properties` e `application.yml`? | 2026-11-05 | — | — |
 
 ## Registro
 
@@ -42,6 +47,16 @@ Uma entrada por sessão, da mais recente para a mais antiga.
 - **Quiz do dia:** acertos / total; perguntas novas entram no banco de revisão
 - **Ponto fraco:** o que precisa voltar na revisão
 -->
+
+### 2026-11-05 · M02 · Spring Boot do zero
+
+- **Status:** concluída (iniciada em 2026-10-28; versão mínima em 2026-11-01)
+- **Aprendi:** `GET /clinic` passando por controller → service → `@ConfigurationProperties`. IoC, beans, starters e
+  autoconfiguração pelo classpath, em paralelo com o service container do Laravel. Dois tropeços viraram lição: o
+  Spring Boot lê `.properties` em ISO-8859-1 (só o YAML é UTF-8), o que corrompeu o acento; e um arquivo apagado de
+  `src` continua em `target` até o `clean`.
+- **Quiz do dia:** 4/4. Revisão: 3/4 (#12 ❌).
+- **Ponto fraco:** quais módulos têm Spring no classpath (#12); sintaxe de `record`.
 
 ### 2026-10-27 · M01 · ADR do multi-módulo (fechamento) e novo Bloco 1
 
