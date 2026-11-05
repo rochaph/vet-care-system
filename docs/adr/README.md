@@ -9,6 +9,7 @@ explicar a linha de cada um em voz alta, consegue defender a decisão.
 | [0002](0002-stack-java-spring-e-go.md) | Java/Spring nos serviços; Go no `notifications` | Tudo em Java (cold start na Lambda) ou tudo em Go (ecossistema OAuth menor) | Duas toolchains no CI |
 | [0003](0003-maven-como-ferramenta-de-build.md) | Maven com Maven Wrapper | Gradle (mais rápido, mas o ganho é marginal em builds pequenos) | Build mais lento, XML menos flexível |
 | [0004](0004-multi-modulo-maven.md) | Multi-módulo `domain` / `application` / `adapters` / `bootstrap` | Módulo único + ArchUnit (só detecta a violação nos testes) | Mais POMs e wiring explícito com `@Bean` |
+| [0005](0005-api-gateway-no-bff.md) | API Gateway no próprio `bff`, com Spring Cloud Gateway | Gateway separado na frente do `bff` (7º serviço e um salto de rede, com um único tipo de cliente) | `bff` com duas responsabilidades e ponto crítico da borda; extrair se surgir outro tipo de cliente |
 
 ## Como os ADRs entram no estudo
 

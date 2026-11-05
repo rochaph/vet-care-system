@@ -47,7 +47,7 @@ Fora do escopo: internação, prontuário clínico completo, exames, telemedicin
 
 | Serviço | Responsabilidade |
 |---|---|
-| `bff` | Sessão (cookie + Redis) e login OAuth 2.0/OIDC; único ponto de entrada do browser |
+| `bff` | API Gateway (roteamento, rate limit, circuit breaker, token relay), sessão (cookie + Redis) e login OAuth 2.0/OIDC; único ponto de entrada do browser |
 | `pets` | Tutores, pets e carteira de saúde; consentimento de acesso para clínicas |
 | `appointments` | Agenda dos veterinários e ciclo de vida do atendimento; orquestra a Saga |
 | `inventory` | Vacinas e medicamentos por lote e validade; reserva de doses |
@@ -60,6 +60,7 @@ Fora do escopo: internação, prontuário clínico completo, exames, telemedicin
 |---|---|
 | Serviços principais | Java 25 (LTS), Spring Boot 4 |
 | Serviço serverless | Go (AWS Lambda) |
+| API Gateway | Spring Cloud Gateway |
 | Identidade | Keycloak (local), Amazon Cognito (AWS) |
 | Sessão | Spring Session + Redis |
 | Mensageria | Kafka, Amazon SQS |
@@ -76,6 +77,7 @@ Fora do escopo: internação, prontuário clínico completo, exames, telemedicin
 | Microsserviços | 6 serviços, banco por serviço, deploy independente |
 | Arquitetura Hexagonal | todos os serviços; `appointments` é a referência; `notifications` troca adaptadores (Lambda ↔ HTTP) |
 | Mensageria | Outbox, consumidor idempotente, retry + DLQ, Saga do agendamento com compensação |
+| API Gateway | `bff` com Spring Cloud Gateway: roteamento, rate limit, circuit breaker, token relay |
 | Session | BFF com cookie de sessão e store no Redis |
 | OAuth 2.0 / OIDC | Authorization Code + PKCE, Client Credentials, Token Exchange, validação de JWT, consentimento do tutor por escopo |
 | Kubernetes | kind, Helm, Ingress, HPA, réplicas |
@@ -94,7 +96,7 @@ docs/learning/   anotações de estudo de cada conceito
 
 - [ ] **1. Base**: Spring Boot em camadas, refatorado para Arquitetura Hexagonal e multi-módulo; Testcontainers, docker-compose
 - [ ] **2. Mensageria e consistência**: Kafka, Outbox, idempotência, retry/DLQ, Saga
-- [ ] **3. Session e OAuth 2.0/OIDC**: Keycloak, BFF, Redis, resource servers, Client Credentials, Token Exchange, logout
+- [ ] **3. Session, OAuth 2.0/OIDC e API Gateway**: Keycloak, BFF com Spring Cloud Gateway, Redis, resource servers, Client Credentials, Token Exchange, logout
 - [ ] **4. Kubernetes**: kind, Helm, Argo CD, OpenTelemetry, HPA
 - [ ] **5. Serverless e AWS**: `notifications` em Go na Lambda, SQS, Terraform (LocalStack → AWS)
 
