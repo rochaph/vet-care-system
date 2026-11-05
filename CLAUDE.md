@@ -28,6 +28,9 @@ decisões de arquitetura em [docs/adr](docs/adr).
 - Java 25 (LTS) + Spring Boot 4 nos serviços Java; Go no `notifications`.
 - Commits no padrão de commit semântico (`feat:`, `fix:`, `chore:`, `docs:`, `test:`, `refactor:`), sem coautoria do Claude;
   detalhes na skill [commit](.claude/skills/commit/SKILL.md).
+- Revisão pré-commit: o hook [.githooks/pre-commit](.githooks/pre-commit) roda o agente
+  [code-reviewer](.claude/agents/code-reviewer.md) no diff staged e só bloqueia problema grave. Ativar em cada clone com
+  `git config core.hooksPath .githooks`; pular num commit com `git commit --no-verify`.
 - Decisão com trade-off relevante vira ADR curto (formato de `docs/adr/template.md`) junto com a implementação,
   e ganha uma linha no índice [docs/adr/README.md](docs/adr/README.md).
 - Documentação em português do Brasil.

@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# Revisa o diff staged com o agente code-reviewer (.claude/agents/code-reviewer.md).
+# Ativação em cada clone: git config core.hooksPath .githooks
+# Para pular a revisão num commit: git commit --no-verify
+#
+# Só um veredito BLOQUEADO impede o commit. Se a revisão não puder rodar (sem CLI, timeout, erro),
+# o commit segue com um aviso: falha da ferramenta não deve travar o trabalho.
+
+set -u
+
+TIMEOUT_SECONDS=180
+MAX_DIFF_BYTES=200000
+PATHSPEC=(. ':(exclude)*.md' ':(exclude)docs/' ':(exclude)**/mvnw' ':(exclude)**/mvnw.cmd')
+
+warn() { echo "pre-commit: $1; commit segue sem revisão." >&2; }
+
+git diff --cached --quiet -- "${PATHSPEC[@]}" && exit 0
+
+if ! command -v claude >/dev/null 2>&1; then
+  warn "CLI do claude não encontrada"
+  exit 0
+fi
+
+diff_file=$(mktemp)
+trap 'rm -f "$diff_file"' EXIT
+git diff --cached -- "${PATHSPEC[@]}" > "$diff_file"
+
+if [ "$(wc -c < "$diff_file")" -gt "$MAX_DIFF_BYTES" ]; then
+  warn "diff maior que $MAX_DIFF_BYTES bytes"
+  exit 0
+fi
+
+echo "pre-commit: revisando o diff staged..." >&2
+
+# CLAUDECODE é removida para o hook também funcionar em commits feitos de dentro de uma sessão do Claude Code.
+review=$(env -u CLAUDECODE timeout "$TIMEOUT_SECONDS" claude -p "Revise o diff staged recebido na entrada." \
+  --agent code-reviewer --tools Read,Grep,Glob --strict-mcp-config --no-session-persistence < "$diff_file" 2>&1)
+status=$?
+
+if [ "$status" -ne 0 ]; then
+  warn "a revisão falhou (código $status): $review"
+  exit 0
+fi
+
+echo "$review" >&2
+
+verdict=$(printf '%s\n' "$review" | tr -d '\r' | grep -E '^VEREDITO: (APROVADO|BLOQUEADO)$' | tail -n 1)
+
+case "$verdict" in
+  "VEREDITO: APROVADO") exit 0 ;;
+  "VEREDITO: BLOQUEADO")
+    echo "pre-commit: commit bloqueado. Corrija os itens 🔴 ou use git commit --no-verify." >&2
+    exit 1
+    ;;
+  *)
+    warn "a revisão não trouxe veredito"
+    exit 0
+    ;;
+esac
