@@ -59,7 +59,7 @@ O `appointments` é o serviço de referência. Os demais nascem nos blocos em qu
 - **Primeiro passo (5 min):** gerar o projeto no start.spring.io (Maven, Java 25, Spring Boot 4, Spring Web) em
   `services/appointments` e rodar `./mvnw spring-boot:run`.
 - **Pronto quando:**
-  - [ ] Projeto em módulo único com Maven Wrapper versionado
+  - [x] Projeto em módulo único com Maven Wrapper versionado
   - [x] Um endpoint `GET` respondendo, com controller que recebe um `@Service` por injeção via construtor
   - [x] Um valor lido do `application.yml` com `@ConfigurationProperties`
 - **Conceito de entrevista:** IoC e injeção de dependência, bean, starter, autoconfiguração
