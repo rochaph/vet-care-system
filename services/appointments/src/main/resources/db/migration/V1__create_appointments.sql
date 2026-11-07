@@ -1,0 +1,9 @@
+CREATE TABLE appointments (
+    id UUID PRIMARY KEY,
+    pet_id UUID NOT NULL,
+    veterinarian_id UUID NOT NULL,
+    scheduled_at TIMESTAMPTZ NOT NULL,
+    status VARCHAR (20) NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL
+);

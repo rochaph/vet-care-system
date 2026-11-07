@@ -1,6 +1,16 @@
 spring:
   application:
     name: appointments
+  config:
+    import: optional:file:../../infra/docker-compose/.env[.properties]
+  datasource:
+    url: jdbc:postgresql://localhost:5432/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
 
 vetcare:
   clinic:
