@@ -15,7 +15,7 @@ Resultado: ✅ acertou · ⚠️ parcial · ❌ errou · — ainda não pergunta
 | 1 | Por que Maven e não Gradle neste projeto? | 2026-10-14 | 2026-10-27 | ✅ |
 | 2 | Para que serve o Maven Wrapper? | 2026-10-14 | 2026-10-27 | ✅ |
 | 3 | Que problema a arquitetura em camadas tradicional causa no domínio? | 2026-10-15 | 2026-10-28 | ✅ |
-| 4 | O que é um port de entrada? E um de saída? | 2026-10-15 | 2026-10-27 | ✅ |
+| 4 | O que é um port de entrada? E um de saída? | 2026-10-15 | 2026-11-07 | ✅ |
 | 5 | Por que o port de saída é declarado no centro, e não no adapter? | 2026-10-15 | 2026-10-28 | ✅ |
 | 6 | Qual princípio do SOLID sustenta a Arquitetura Hexagonal? | 2026-10-15 | 2026-10-28 | ✅ |
 | 7 | Quando a Arquitetura Hexagonal *não* vale a pena? | 2026-10-15 | 2026-10-28 | ✅ |
@@ -25,7 +25,7 @@ Resultado: ✅ acertou · ⚠️ parcial · ❌ errou · — ainda não pergunta
 | 11 | Chamar o `payments` via HTTP gera que tipo de port, e onde ficam interface e implementação? | 2026-10-25 | 2026-10-27 | ✅ |
 | 12 | No multi-módulo, em que módulo fica a `@SpringBootApplication` e quais módulos têm Spring no classpath? | 2026-10-25 | 2026-11-05 | ✅ |
 | 13 | O que é o composition root e qual módulo cumpre esse papel? | 2026-10-27 | 2026-10-27 | ✅ |
-| 14 | Como evitar um `@Bean` por caso de uso sem pôr Spring no `application`? | 2026-10-27 | 2026-11-05 | ❌ |
+| 14 | Como evitar um `@Bean` por caso de uso sem pôr Spring no `application`? | 2026-10-27 | 2026-11-07 | ❌ |
 | 15 | Herdar `spring-boot-starter-parent` coloca o Spring no classpath do `domain`? | 2026-10-27 | 2026-11-05 | ✅ |
 | 16 | ADR 0002: por que Go só no `notifications`, e não em todos os serviços? | 2026-10-27 | 2026-11-05 | ✅ |
 | 17 | ADR 0002: por que Java 25 e não Java 21? | 2026-11-01 | 2026-11-05 | ✅ |
@@ -33,11 +33,15 @@ Resultado: ✅ acertou · ⚠️ parcial · ❌ errou · — ainda não pergunta
 | 19 | Por que injeção pelo construtor, e não `@Autowired` no campo? | 2026-11-05 | 2026-11-05 | ✅ |
 | 20 | O que faz um método de `@RestController` devolver JSON? | 2026-11-05 | 2026-11-05 | ✅ |
 | 21 | Por que um arquivo apagado de `src` ainda pode valer depois de `mvnw verify`? | 2026-11-05 | 2026-11-05 | ✅ |
-| 22 | Em que charset o Spring Boot lê `application.properties` e `application.yml`? | 2026-11-05 | — | — |
+| 22 | Em que charset o Spring Boot lê `application.properties` e `application.yml`? | 2026-11-05 | 2026-11-07 | ✅ |
 | 23 | ADR 0005: por que o API Gateway fica no `bff`, e não em um serviço separado? | 2026-11-05 | 2026-11-05 | ✅ |
-| 24 | Qual a diferença entre Ingress, API Gateway e BFF? | 2026-11-05 | 2026-11-05 | ❌ |
+| 24 | Qual a diferença entre Ingress, API Gateway e BFF? | 2026-11-05 | 2026-11-07 | ✅ |
 | 25 | Por que `pet_id` na tabela de atendimentos não tem foreign key? | 2026-11-05 | 2026-11-05 | ✅ |
 | 26 | O que acontece ao editar uma migration Flyway que já foi aplicada? | 2026-11-05 | 2026-11-05 | ✅ |
+| 27 | Numa transação, `setStatus()` numa entidade carregada, sem `save()`: o que acontece? | 2026-11-07 | 2026-11-07 | ❌ |
+| 28 | Por que `@Enumerated(EnumType.STRING)` e não o padrão `ORDINAL`? | 2026-11-07 | 2026-11-07 | ✅ |
+| 29 | Por que `timestamptz`, e não `timestamp`, para o horário do atendimento? | 2026-11-07 | 2026-11-07 | ❌ |
+| 30 | Quando é aceitável editar uma migration Flyway já aplicada? | 2026-11-07 | 2026-11-07 | ✅ |
 
 ## Registro
 
@@ -51,6 +55,17 @@ Uma entrada por sessão, da mais recente para a mais antiga.
 - **Quiz do dia:** acertos / total; perguntas novas entram no banco de revisão
 - **Ponto fraco:** o que precisa voltar na revisão
 -->
+
+### 2026-11-07 · M03 · Postgres, JPA e Flyway (fechamento)
+
+- **Status:** concluída
+- **Aprendi:** Flyway com `V1__create_appointments.sql` aplicada na subida e checksum no `flyway_schema_history`;
+  migration só se edita enquanto não saiu da máquina, depois disso é uma nova versão. Entidade `Appointment` com
+  `JpaRepository` e `ddl-auto: validate` (o Flyway cria o schema, o Hibernate só confere). Data Mapper (JPA) vs.
+  Active Record (Eloquent). Tropeços que viraram lição: `timestamp` sem fuso, escopos `compile`/`runtime` trocados,
+  bloco `jpa` fora de `spring:` (ignorado em silêncio) e campos `public` que pulam o proxy do Hibernate.
+- **Quiz do dia:** 2/4 (#27 ❌, #29 ❌). Revisão: 3/4 (#14 ❌ pela segunda vez; exemplo resolvido mostrado).
+- **Ponto fraco:** dirty checking (#27); o que o `timestamptz` guarda (#29); `@UseCase` com `includeFilters` (#14).
 
 ### 2026-11-05 · M03 · Postgres, JPA e Flyway
 

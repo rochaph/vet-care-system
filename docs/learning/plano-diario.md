@@ -20,7 +20,7 @@ Uma missão por dia, de ~60 minutos, com começo, meio e fim. A rotina das 15h l
 |---|---|---|
 | M01 · ADR do multi-módulo | 1 | concluída |
 | M02 · Spring Boot do zero | 1 | concluída |
-| M03 · Postgres, JPA e Flyway | 1 | em andamento |
+| M03 · Postgres, JPA e Flyway | 1 | concluída |
 | M04 · CRUD de agendamento em camadas | 1 | pendente |
 | M05 · Testes no Spring | 1 | pendente |
 | M06 · Regras de negócio e a dor | 1 | pendente |
@@ -72,8 +72,8 @@ O `appointments` é o serviço de referência. Os demais nascem nos blocos em qu
 - **Primeiro passo (5 min):** subir só um Postgres com `infra/docker-compose`.
 - **Pronto quando:**
   - [x] Postgres no compose, configuração via `.env` (só `.env.example` versionado)
-  - [ ] Migration Flyway da tabela de atendimentos, aplicada quando a aplicação sobe
-  - [ ] Entidade `@Entity Appointment` e uma interface `JpaRepository`
+  - [x] Migration Flyway da tabela de atendimentos, aplicada quando a aplicação sobe
+  - [x] Entidade `@Entity Appointment` e uma interface `JpaRepository`
 - **Conceito de entrevista:** ORM, Data Mapper (JPA) vs. Active Record (Eloquent), Spring Data, versionamento de schema.
 - **Versão mínima:** Postgres no compose e a aplicação conectando.
 
