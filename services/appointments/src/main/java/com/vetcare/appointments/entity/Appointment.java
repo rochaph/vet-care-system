@@ -36,7 +36,15 @@ public class Appointment {
     @UpdateTimestamp
     private Instant updatedAt;
 
-    protected Appointment() {}
+    protected Appointment() {
+    }
+
+    public Appointment(UUID petId, UUID veterinarianId, Instant scheduledAt) {
+        this.petId = petId;
+        this.veterinarianId = veterinarianId;
+        this.scheduledAt = scheduledAt;
+        this.status = AppointmentStatus.PENDING;
+    }
 
     public UUID getId() {
         return id;
