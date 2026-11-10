@@ -21,7 +21,7 @@ Uma missão por dia, de ~60 minutos, com começo, meio e fim. A rotina das 15h l
 | M01 · ADR do multi-módulo | 1 | concluída |
 | M02 · Spring Boot do zero | 1 | concluída |
 | M03 · Postgres, JPA e Flyway | 1 | concluída |
-| M04 · CRUD de agendamento em camadas | 1 | pendente |
+| M04 · CRUD de agendamento em camadas | 1 | em andamento |
 | M05 · Testes no Spring | 1 | pendente |
 | M06 · Regras de negócio e a dor | 1 | pendente |
 | M07 · Domínio puro | 1 | pendente |
@@ -82,10 +82,10 @@ O `appointments` é o serviço de referência. Os demais nascem nos blocos em qu
 - **Por quê:** o fluxo completo controller → service → repository, do jeito mais comum no mercado.
 - **Primeiro passo (5 min):** escrever o JSON de request e response de "agendar atendimento".
 - **Pronto quando:**
-  - [ ] `POST /appointments` e `GET /appointments/{id}`, com DTOs em `record`
+  - [x] `POST /appointments` e `GET /appointments/{id}`, com DTOs em `record`
   - [ ] Validação com Bean Validation (`@Valid`)
   - [ ] Erros respondidos como Problem Details (RFC 9457) via `@RestControllerAdvice`
-  - [ ] Agendar e consultar com `curl`
+  - [x] Agendar e consultar com `curl`
 - **Conceito de entrevista:** por que DTO ≠ entidade; validação; tratamento global de erros.
 - **Versão mínima:** `POST` salvando no banco.
 

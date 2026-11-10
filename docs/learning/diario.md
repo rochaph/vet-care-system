@@ -21,11 +21,11 @@ Resultado: ✅ acertou · ⚠️ parcial · ❌ errou · — ainda não pergunta
 | 7 | Quando a Arquitetura Hexagonal *não* vale a pena? | 2026-10-15 | 2026-10-28 | ✅ |
 | 8 | Módulo único + ArchUnit vs. multi-módulo: quando cada um detecta a violação? | 2026-10-15 | 2026-11-05 | ✅ |
 | 9 | Por que o multi-módulo não elimina o ArchUnit? | 2026-10-15 | 2026-11-05 | ✅ |
-| 10 | Por que os casos de uso não levam `@Service` nem `@Transactional` aqui? | 2026-10-15 | 2026-10-27 | ✅ |
+| 10 | Por que os casos de uso não levam `@Service` nem `@Transactional` aqui? | 2026-10-15 | 2026-11-10 | ✅ |
 | 11 | Chamar o `payments` via HTTP gera que tipo de port, e onde ficam interface e implementação? | 2026-10-25 | 2026-10-27 | ✅ |
 | 12 | No multi-módulo, em que módulo fica a `@SpringBootApplication` e quais módulos têm Spring no classpath? | 2026-10-25 | 2026-11-05 | ✅ |
 | 13 | O que é o composition root e qual módulo cumpre esse papel? | 2026-10-27 | 2026-10-27 | ✅ |
-| 14 | Como evitar um `@Bean` por caso de uso sem pôr Spring no `application`? | 2026-10-27 | 2026-11-07 | ❌ |
+| 14 | Como evitar um `@Bean` por caso de uso sem pôr Spring no `application`? | 2026-10-27 | 2026-11-10 | ✅ |
 | 15 | Herdar `spring-boot-starter-parent` coloca o Spring no classpath do `domain`? | 2026-10-27 | 2026-11-05 | ✅ |
 | 16 | ADR 0002: por que Go só no `notifications`, e não em todos os serviços? | 2026-10-27 | 2026-11-05 | ✅ |
 | 17 | ADR 0002: por que Java 25 e não Java 21? | 2026-11-01 | 2026-11-05 | ✅ |
@@ -38,10 +38,14 @@ Resultado: ✅ acertou · ⚠️ parcial · ❌ errou · — ainda não pergunta
 | 24 | Qual a diferença entre Ingress, API Gateway e BFF? | 2026-11-05 | 2026-11-07 | ✅ |
 | 25 | Por que `pet_id` na tabela de atendimentos não tem foreign key? | 2026-11-05 | 2026-11-05 | ✅ |
 | 26 | O que acontece ao editar uma migration Flyway que já foi aplicada? | 2026-11-05 | 2026-11-05 | ✅ |
-| 27 | Numa transação, `setStatus()` numa entidade carregada, sem `save()`: o que acontece? | 2026-11-07 | 2026-11-07 | ❌ |
+| 27 | Numa transação, `setStatus()` numa entidade carregada, sem `save()`: o que acontece? | 2026-11-07 | 2026-11-10 | ✅ |
 | 28 | Por que `@Enumerated(EnumType.STRING)` e não o padrão `ORDINAL`? | 2026-11-07 | 2026-11-07 | ✅ |
-| 29 | Por que `timestamptz`, e não `timestamp`, para o horário do atendimento? | 2026-11-07 | 2026-11-07 | ❌ |
+| 29 | Por que `timestamptz`, e não `timestamp`, para o horário do atendimento? | 2026-11-07 | 2026-11-10 | ✅ |
 | 30 | Quando é aceitável editar uma migration Flyway já aplicada? | 2026-11-07 | 2026-11-07 | ✅ |
+| 31 | Por que não receber a `@Entity` direto no `@RequestBody`? | 2026-11-10 | 2026-11-10 | ❌ |
+| 32 | O que um `POST` que cria um recurso deve responder, pela convenção REST? | 2026-11-10 | 2026-11-10 | ✅ |
+| 33 | Anotações de validação no DTO, mas o request inválido passa: qual a causa provável? | 2026-11-10 | 2026-11-10 | ❌ |
+| 34 | Por que o JPA exige um construtor sem argumentos na entidade? | 2026-11-10 | 2026-11-10 | ✅ |
 
 ## Registro
 
@@ -55,6 +59,19 @@ Uma entrada por sessão, da mais recente para a mais antiga.
 - **Quiz do dia:** acertos / total; perguntas novas entram no banco de revisão
 - **Ponto fraco:** o que precisa voltar na revisão
 -->
+
+### 2026-11-10 · M04 · CRUD de agendamento em camadas
+
+- **Status:** parcial (POST e GET funcionando; faltam Bean Validation e Problem Details)
+- **Aprendi:** contrato antes do código: UUID, camelCase, data ISO-8601 com fuso e `201` com `Location` e corpo.
+  DTOs em `record` separados da entidade, com `AppointmentResponse.from(...)`. A entidade nasce `PENDING` por um
+  construtor próprio, mas o JPA ainda precisa do construtor sem argumentos para ler do banco. `@Transactional(readOnly = true)`
+  no GET e uma `AppointmentNotFoundException` própria, para o service não saber de HTTP. Bean Validation foi apresentada,
+  mas não implementada.
+- **Quiz do dia:** 2/4 (#31 ❌, #33 ❌). Revisão: 4/4.
+- **Ponto fraco:** por que DTO e não entidade no `@RequestBody` (#31); `@Valid` dispara a validação (#33).
+- **Próximo passo:** `spring-boot-starter-validation`, `@NotNull`/`@Future` no `CreateAppointmentRequest` e `@Valid` no
+  controller; depois Problem Details com `@RestControllerAdvice` (404 e 400).
 
 ### 2026-11-07 · M03 · Postgres, JPA e Flyway (fechamento)
 
