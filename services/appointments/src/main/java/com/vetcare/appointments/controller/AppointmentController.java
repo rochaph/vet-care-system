@@ -16,6 +16,8 @@ import com.vetcare.appointments.dto.AppointmentResponse;
 import com.vetcare.appointments.dto.CreateAppointmentRequest;
 import com.vetcare.appointments.service.AppointmentService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/appointments")
 public class AppointmentController {
@@ -27,7 +29,7 @@ public class AppointmentController {
     }
 
     @PostMapping
-    public ResponseEntity<AppointmentResponse> create(@RequestBody CreateAppointmentRequest request) {
+    public ResponseEntity<AppointmentResponse> create(@Valid @RequestBody CreateAppointmentRequest request) {
         AppointmentResponse response = this.appointmentService.schedule(request);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
