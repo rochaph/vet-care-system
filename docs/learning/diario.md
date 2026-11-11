@@ -22,9 +22,9 @@ Resultado: ✅ acertou · ⚠️ parcial · ❌ errou · — ainda não pergunta
 | 8 | Módulo único + ArchUnit vs. multi-módulo: quando cada um detecta a violação? | 2026-10-15 | 2026-11-05 | ✅ |
 | 9 | Por que o multi-módulo não elimina o ArchUnit? | 2026-10-15 | 2026-11-05 | ✅ |
 | 10 | Por que os casos de uso não levam `@Service` nem `@Transactional` aqui? | 2026-10-15 | 2026-11-10 | ✅ |
-| 11 | Chamar o `payments` via HTTP gera que tipo de port, e onde ficam interface e implementação? | 2026-10-25 | 2026-10-27 | ✅ |
+| 11 | Chamar o `payments` via HTTP gera que tipo de port, e onde ficam interface e implementação? | 2026-10-25 | 2026-11-11 | ✅ |
 | 12 | No multi-módulo, em que módulo fica a `@SpringBootApplication` e quais módulos têm Spring no classpath? | 2026-10-25 | 2026-11-05 | ✅ |
-| 13 | O que é o composition root e qual módulo cumpre esse papel? | 2026-10-27 | 2026-10-27 | ✅ |
+| 13 | O que é o composition root e qual módulo cumpre esse papel? | 2026-10-27 | 2026-11-11 | ✅ |
 | 14 | Como evitar um `@Bean` por caso de uso sem pôr Spring no `application`? | 2026-10-27 | 2026-11-10 | ✅ |
 | 15 | Herdar `spring-boot-starter-parent` coloca o Spring no classpath do `domain`? | 2026-10-27 | 2026-11-05 | ✅ |
 | 16 | ADR 0002: por que Go só no `notifications`, e não em todos os serviços? | 2026-10-27 | 2026-11-05 | ✅ |
@@ -42,10 +42,14 @@ Resultado: ✅ acertou · ⚠️ parcial · ❌ errou · — ainda não pergunta
 | 28 | Por que `@Enumerated(EnumType.STRING)` e não o padrão `ORDINAL`? | 2026-11-07 | 2026-11-07 | ✅ |
 | 29 | Por que `timestamptz`, e não `timestamp`, para o horário do atendimento? | 2026-11-07 | 2026-11-10 | ✅ |
 | 30 | Quando é aceitável editar uma migration Flyway já aplicada? | 2026-11-07 | 2026-11-07 | ✅ |
-| 31 | Por que não receber a `@Entity` direto no `@RequestBody`? | 2026-11-10 | 2026-11-10 | ❌ |
+| 31 | Por que não receber a `@Entity` direto no `@RequestBody`? | 2026-11-10 | 2026-11-11 | ✅ |
 | 32 | O que um `POST` que cria um recurso deve responder, pela convenção REST? | 2026-11-10 | 2026-11-10 | ✅ |
-| 33 | Anotações de validação no DTO, mas o request inválido passa: qual a causa provável? | 2026-11-10 | 2026-11-10 | ❌ |
+| 33 | Anotações de validação no DTO, mas o request inválido passa: qual a causa provável? | 2026-11-10 | 2026-11-11 | ✅ |
 | 34 | Por que o JPA exige um construtor sem argumentos na entidade? | 2026-11-10 | 2026-11-10 | ✅ |
+| 35 | O que o Problem Details (RFC 9457) padroniza? | 2026-11-11 | 2026-11-11 | ✅ |
+| 36 | `"petId": "abc"` num POST: que etapa recusa o request? | 2026-11-11 | 2026-11-11 | ❌ |
+| 37 | Exceção inesperada no handler global: o que a API deve devolver? | 2026-11-11 | 2026-11-11 | ✅ |
+| 38 | Por que o service lança exceção própria, e não `ResponseStatusException`? | 2026-11-11 | 2026-11-11 | ✅ |
 
 ## Registro
 
@@ -59,6 +63,17 @@ Uma entrada por sessão, da mais recente para a mais antiga.
 - **Quiz do dia:** acertos / total; perguntas novas entram no banco de revisão
 - **Ponto fraco:** o que precisa voltar na revisão
 -->
+
+### 2026-11-11 · M04 · CRUD de agendamento em camadas (fechamento)
+
+- **Status:** concluída
+- **Aprendi:** Bean Validation com `@NotNull`/`@Future` no record e `@Valid` no controller. Problem Details (RFC 9457)
+  com um `@RestControllerAdvice` que estende `ResponseEntityExceptionHandler`: 404 para `AppointmentNotFoundException`
+  e 400 com uma lista `errors` (e não uma propriedade por campo, que colidiria com `status`/`type` e sobrescreveria
+  erros). JSON malformado é recusado pelo Jackson antes da validação. O Git local corrompeu (objetos vazios após um
+  desligamento do WSL) e foi restaurado a partir do GitHub.
+- **Quiz do dia:** 3/4 (#36 ❌). Revisão: 4/4.
+- **Ponto fraco:** ordem desserialização (Jackson) → validação (Bean Validation) (#36).
 
 ### 2026-11-10 · M04 · CRUD de agendamento em camadas
 
